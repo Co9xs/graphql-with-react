@@ -15,7 +15,6 @@ const DEFAULT_STATE = {
 const App = (props) => {
   const [gqlVars, setGqlVars] = useState(DEFAULT_STATE)
   const { query, first, last, before, after } = gqlVars
-  console.log({query})
 
   const handleChange = (e) => {
     setGqlVars({
@@ -30,7 +29,6 @@ const App = (props) => {
 
   return (
     <ApolloProvider client={client}>
-      <h2>Hello GraphQL</h2>
       <form onSubmit={handleSubmit}>
         <input value={query} onChange={handleChange}/>
       </form>
@@ -42,11 +40,23 @@ const App = (props) => {
           ({loading, error, data}) => {
             if (loading) return "Loading..."
             if (error) return `${error.message}`
-            console.log({data})
-            console.log(data.search.edges)
+            const search = data.search
+            const repositoryCount = search.repositoryCount
+            const repositoryUnit = repositoryCount === 1 ? "Repository" : "Repositories"
+            const title = `GitHub Repositories Search Results - ${repositoryCount} ${repositoryUnit}`
+            const nodes = search.edges.map(edge => edge.node)
             return (
+              <>
+              <h2>{title}</h2>
               <ul>
+                {nodes.map(node => (
+                  <li key={node.id}>
+                    <a href={node.url}>{node.name}</a>
+                    <button>{node.stargazers.totalCount} starts | {node.viewerHasStarred ? "starred" : "-"}</button>
+                  </li>
+                ))}
               </ul>
+              </>
             )
           }
         }
