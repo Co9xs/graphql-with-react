@@ -1,6 +1,9 @@
 export const StarButton = (props) => {
   const { node } = props
+  const totalCount = node.stargazers.totalCount
+  const viewerHasStarred = node.viewerHasStarred
+  const starCount = totalCount === 1 ? "1 star" : `${totalCount} stars`
   return (
-    <button>{node.stargazers.totalCount} starts | {node.viewerHasStarred ? "starred" : "-"}</button>
+    <button>{starCount} | {viewerHasStarred ? "starred" : "-"}</button>
   )
 }
