@@ -4,5 +4,5 @@ export const DEFAULT_VARIABLES = {
   last: null,
   after: null,
   before: null,
-  query: "フロントエンドエンジニア"
+  query: ""
 }

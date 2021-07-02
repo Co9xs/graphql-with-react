@@ -1,20 +1,19 @@
+import { useRef } from "react"
 export const InputForm = (props) => {
-  const { query, defaultVariables, setVariables } = props
-  const handleChange = (e) => {
-    setVariables({
-      ...defaultVariables,
-      query: e.target.value
-    })
-  }
-  
+  const { defaultVariables, setVariables } = props
+  const inputElement = useRef()
   const handleSubmit = (e) => {
     e.preventDefault()
+    setVariables({
+      ...defaultVariables,
+      query: inputElement.current.value
+    })
   }
-
 
   return (
     <form onSubmit={handleSubmit}>
-      <input value={query} onChange={handleChange}/>
+      <input ref={inputElement}/>
+      <button type="submit">submit</button>
     </form>
   )
 }
