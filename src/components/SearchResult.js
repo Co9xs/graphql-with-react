@@ -39,7 +39,7 @@ export const SearchResult = (props) => {
             <li key={node.id}>
               <a href={node.url} target="_blank" rel="noopener noreferrer">{node.name}</a>
               &nbsp;
-              <StarButton node={node}/>
+              <StarButton node={node} variables={variables}/>
             </li>
           ))}
         </ul>
