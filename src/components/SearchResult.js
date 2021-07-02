@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client"
-import { SEARCH_REPOSITORIES } from "./graphql"
-import { PER_PAGE } from "./constants"
+import { SEARCH_REPOSITORIES } from "../graphql/query"
+import { PER_PAGE } from "../utils/constants"
+import { StarButton } from "./StarButton"
 
 export const SearchResult = (props) => {
   const { variables, setVariables } = props 
@@ -36,8 +37,9 @@ export const SearchResult = (props) => {
         <ul>
           {nodes.map(node => (
             <li key={node.id}>
-              <a href={node.url}>{node.name}</a>
-              <button>{node.stargazers.totalCount} starts | {node.viewerHasStarred ? "starred" : "-"}</button>
+              <a href={node.url} target="_blank" rel="noopener noreferrer">{node.name}</a>
+              &nbsp;
+              <StarButton node={node}/>
             </li>
           ))}
         </ul>

@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { InputForm } from "./InputForm"
-import { SearchResult } from "./SearchResult"
-import { DEFAULT_VARIABLES } from "./constants"
+import { InputForm } from "./components/InputForm"
+import { SearchResult } from "./components/SearchResult"
+import { DEFAULT_VARIABLES } from "./utils/constants"
 
 
 const App = (props) => {
