@@ -1,23 +1,16 @@
 import { useState } from "react"
 import { InputForm } from "./InputForm"
 import { SearchResult } from "./SearchResult"
+import { DEFAULT_VARIABLES } from "./constants"
 
-const PER_PAGE = 5
-const DEFAULT_STATE = {
-  first: PER_PAGE,
-  last: null,
-  after: null,
-  before: null,
-  query: "フロントエンドエンジニア"
-}
 
 const App = (props) => {
-  const [variables, setVariables] = useState(DEFAULT_STATE)
-  const { query, first, last, before, after } = variables
+  const [variables, setVariables] = useState(DEFAULT_VARIABLES)
+  const { query } = variables
 
   return (
     <>
-      <InputForm query={query} defaultVariables={DEFAULT_STATE} setVariables={setVariables}/>
+      <InputForm query={query} setVariables={setVariables} defaultVariables={DEFAULT_VARIABLES}/>
       <SearchResult variables={variables} setVariables={setVariables}/>
     </>
   );
