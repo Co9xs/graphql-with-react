@@ -8,10 +8,8 @@ export const StarButton = (props) => {
   const viewerHasStarred = node.viewerHasStarred
   const starCount = totalCount === 1 ? "1 star" : `${totalCount} stars`
 
-  // eslint-disable-next-line no-unused-vars
-  const [addStar, { data: addStarData }] = useMutation(ADD_STAR)
-  // eslint-disable-next-line no-unused-vars
-  const [removeStar, { data: removeStarData }] = useMutation(REMOVE_STAR)
+  const [addStar] = useMutation(ADD_STAR)
+  const [removeStar] = useMutation(REMOVE_STAR)
 
   const handleClick = () => {
     viewerHasStarred 
