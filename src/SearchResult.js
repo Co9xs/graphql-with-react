@@ -26,6 +26,8 @@ export const SearchResult = (props) => {
         ...variables,
         before: search.pageInfo.startCursor,
         after: null,
+        first: null,
+        last: PER_PAGE,
       })
     }
     return (
@@ -34,7 +36,6 @@ export const SearchResult = (props) => {
         <ul>
           {nodes.map(node => (
             <li key={node.id}>
-              <span>{atob(node.id)}</span>
               <a href={node.url}>{node.name}</a>
               <button>{node.stargazers.totalCount} starts | {node.viewerHasStarred ? "starred" : "-"}</button>
             </li>
